@@ -11,8 +11,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Swal from "sweetalert2";
-import { getAllBrands, deleteBrand } from "../redux/brandSlice";
-import { getAllProducts, deleteProduct } from "../redux/productSlice";
+import { getAllBrands, deleteBrand } from "../../redux/brandSlice";
+import { getAllProducts, deleteProduct } from "../../redux/productSlice";
 
 export default function EditDeletePage() {
   let brands = useSelector((state) => state.brands.brands);

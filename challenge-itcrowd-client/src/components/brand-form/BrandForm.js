@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Button, Box, TextField } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { validateBrand } from "../utils/validators";
+import { validateBrand } from "../../utils/validators";
 import { useLocation } from "react-router-dom";
-import { addNewBrand, editBrand } from "../redux/brandSlice";
+import { addNewBrand, editBrand } from "../../redux/brandSlice";
 import Swal from "sweetalert2";
 
 export default function BrandForm({ edit, id }) {
