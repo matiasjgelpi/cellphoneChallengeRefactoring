@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Paper, Typography, Box, CircularProgress } from "@mui/material";
 import { useParams } from "react-router-dom";
-import { getProductDetail, cleanProductDetail } from "../redux/productSlice";
+import { getProductDetail, cleanProductDetail } from "../../redux/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function ProductDetail() {

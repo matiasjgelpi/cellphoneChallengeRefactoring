@@ -1,10 +1,10 @@
 import { Paper, Box, Button } from "@mui/material";
-import ProductForm from "./ProductForm";
-import BrandForm from "./BrandForm";
+import ProductForm from "../../components/product-form/ProductForm";
+import BrandForm from "../../components/brand-form/BrandForm";
 import { useLocation, useNavigate } from "react-router-dom";
-import EditDeletePage from "./EditDeletePage";
-import EditBrandDetail from "./EditBrandDetail";
-import EditProductDetail from "./EditProductDetail";
+import EditDeletePage from "../edit-delete-page/EditDeletePage";
+import EditBrandDetail from "../../components/edit-brand-detail/EditBrandDetail";
+import EditProductDetail from "../../components/edit-product-detail/EditProductDetail";
 
 export default function AdminPage() {
   const navItems = ["Edit / Delete", "Add Product", "Add Brand"];

@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductDetail } from "../redux/productSlice";
-import ProductForm from "./ProductForm";
+import { getProductDetail } from "../../redux/productSlice";
+import ProductForm from "../product-form/ProductForm";
 
 export default function EditBrandDetail() {
   const { id } = useParams();

@@ -1,10 +1,10 @@
 import "./App.css";
-import MainPage from "./components/MainPage";
-import ProductDetail from "./components/ProductDetail";
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
-import PageNotFound from "./components/PageNotFound";
-import AdminPage from "./components/AdminPage";
+import MainPage from "./pages/main-page/MainPage";
+import ProductDetail from "./components/product-detail/ProductDetail";
+import NavBar from "./components/navbar/NavBar";
+import Footer from "./components/footer/Footer";
+import PageNotFound from "./pages/page-not-found/PageNotFound";
+import AdminPage from "./pages/admin-page/AdminPage";
 import { Routes, Route } from "react-router-dom";
 
 

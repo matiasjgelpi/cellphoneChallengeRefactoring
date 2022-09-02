@@ -1,6 +1,6 @@
 import { Paper, Typography, Box, Pagination, CircularProgress} from "@mui/material";
-import ProductCard from "./ProductCard";
-import { getAllProducts } from "../redux/productSlice";
+import ProductCard from "../../components/product-card/ProductCard";
+import { getAllProducts } from "../../redux/productSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 

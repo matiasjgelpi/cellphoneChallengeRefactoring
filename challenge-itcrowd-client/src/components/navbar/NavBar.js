@@ -1,7 +1,7 @@
 import { AppBar, Box } from "@mui/material";
 import { Link } from "react-router-dom";
-import LoginButton from "./Login";
-import LogoutButton from "./Logout";
+import LoginButton from "../login/Login";
+import LogoutButton from "../logout/Logout";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function NavBar() {

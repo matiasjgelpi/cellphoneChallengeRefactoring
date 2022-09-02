@@ -12,9 +12,9 @@ import {
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { addNewProduct, editProduct } from "../redux/productSlice";
-import { getAllBrands } from "../redux/brandSlice";
-import { validateProduct } from "../utils/validators";
+import { addNewProduct, editProduct } from "../../redux/productSlice";
+import { getAllBrands } from "../../redux/brandSlice";
+import { validateProduct } from "../../utils/validators";
 import Swal from "sweetalert2";
 
 export default function ProductForm({ edit, id }) {
