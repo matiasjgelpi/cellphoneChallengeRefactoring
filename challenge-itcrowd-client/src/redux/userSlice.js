@@ -4,9 +4,18 @@ import axios from "axios";
 
 export const login = createAsyncThunk(
     "user/login",
-    async () => {
+    async (user) => {
       try {
-        const response = await axios("http://localhost:4000/user");
+        
+        const loggedUser = {
+            name : user.name,
+            email: user.email,
+            isAdministrator: true
+        }
+        console.log(loggedUser)
+        const response = await axios.post("http://localhost:4000/user", loggedUser);
+
+        
         return response.data;
       } catch (error) {
         Swal.fire({
@@ -19,21 +28,21 @@ export const login = createAsyncThunk(
   );
 
 const userSlice = createSlice({
-    name: "brands",
+    name: "user",
     initialState: {
       user: {},
    
     },
     extraReducers: {
       [login.pending]: (state, action) => {
-        state.brandsStatus = "loading";
+        state.userloginStatus = "loading";
       },
       [login.fulfilled]: (state, action) => {
         state.user = action.payload;
-        state.brandsStatus = "success";
+        state.userloginStatus = "success";
       },
       [login.rejected]: (state, action) => {
-        state.brandsStatus = "failed";
+        state.userloginStatus = "failed";
       },
      
     },

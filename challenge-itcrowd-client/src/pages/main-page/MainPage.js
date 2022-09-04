@@ -1,15 +1,18 @@
-import { Paper, Typography, Box, Pagination, CircularProgress} from "@mui/material";
+import {
+  Paper,
+  Typography,
+  Box,
+  Pagination,
+  CircularProgress,
+} from "@mui/material";
 import ProductCard from "../../components/product-card/ProductCard";
 import { getAllProducts } from "../../redux/productSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 
-
 export default function MainPage() {
   let products = useSelector((state) => state.products.products);
   const dispatch = useDispatch();
-
-console.log(process.env.REACT_APP_GIL);
 
   const [page, setPage] = useState(1);
   const [productsPerPage] = useState(3);
