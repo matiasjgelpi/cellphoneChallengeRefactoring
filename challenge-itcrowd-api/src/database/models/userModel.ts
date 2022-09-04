@@ -4,7 +4,7 @@ import { User } from '../../types/types'
 const userSchema = new Schema<User>({
   name: { type: String, required: true },
   email: { type: String, required: true },
-  passwordHash: { type: String, required: true }
+  isAdministrator: { type: Boolean, required: true }
 })
 
 userSchema.set('toJSON', {
