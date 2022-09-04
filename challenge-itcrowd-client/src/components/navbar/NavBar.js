@@ -31,12 +31,12 @@ export default function NavBar() {
       {!isAuthenticated ? (
         <LoginButton></LoginButton>
       ) : (
-        <Box 
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          gap: "1rem",
-        }}
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: "1rem",
+          }}
         >
           <LogoutButton></LogoutButton>
 
@@ -49,9 +49,11 @@ export default function NavBar() {
           >
             <h3>Admin Page</h3>
           </Link>
-          <img src={user.picture} style={
-            {width: "35px", height: "35px", borderRadius: "50%"}
-          } alt="user avatar" />
+          <img
+            src={user.picture}
+            style={{ width: "35px", height: "35px", borderRadius: "50%" }}
+            alt="user avatar"
+          />
         </Box>
       )}
     </AppBar>

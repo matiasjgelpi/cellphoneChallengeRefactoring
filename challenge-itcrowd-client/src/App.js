@@ -7,7 +7,6 @@ import PageNotFound from "./pages/page-not-found/PageNotFound";
 import AdminPage from "./pages/admin-page/AdminPage";
 import { Routes, Route } from "react-router-dom";
 
-
 function App() {
   return (
     <div className="App">
@@ -16,10 +15,6 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="detail/:id" element={<ProductDetail />} />
         <Route path="admin/*" element={<AdminPage />} />
-        {/* <Route path="admin/AddProduct" element={<AdminPage />} />
-        <Route path="admin/AddBrand" element={<AdminPage />} />
-        <Route path="admin/Edit/Delete/EditBrand/:id" element={<AdminPage />} />
-        <Route path="admin/Edit/Delete/EditProduct/:id" element={<AdminPage />} /> */}
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer></Footer>
