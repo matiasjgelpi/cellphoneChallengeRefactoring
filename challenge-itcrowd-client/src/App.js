@@ -15,11 +15,11 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="detail/:id" element={<ProductDetail />} />
-        <Route path="admin/Edit/Delete" element={<AdminPage />} />
-        <Route path="admin/AddProduct" element={<AdminPage />} />
+        <Route path="admin/*" element={<AdminPage />} />
+        {/* <Route path="admin/AddProduct" element={<AdminPage />} />
         <Route path="admin/AddBrand" element={<AdminPage />} />
         <Route path="admin/Edit/Delete/EditBrand/:id" element={<AdminPage />} />
-        <Route path="admin/Edit/Delete/EditProduct/:id" element={<AdminPage />} />
+        <Route path="admin/Edit/Delete/EditProduct/:id" element={<AdminPage />} /> */}
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer></Footer>

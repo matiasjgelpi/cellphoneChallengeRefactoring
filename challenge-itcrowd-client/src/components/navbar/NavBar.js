@@ -45,7 +45,7 @@ export default function NavBar() {
               textDecoration: "none",
               color: "white",
             }}
-            to="admin/Edit/Delete"
+            to="admin"
           >
             <h3>Admin Page</h3>
           </Link>

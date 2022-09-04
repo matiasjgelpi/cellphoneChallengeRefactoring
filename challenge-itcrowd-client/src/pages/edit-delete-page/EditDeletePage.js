@@ -8,17 +8,21 @@ import {
   MenuItem,
 } from "@mui/material";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import { getAllBrands, deleteBrand } from "../../redux/brandSlice";
 import { getAllProducts, deleteProduct } from "../../redux/productSlice";
+import EditBrandDetail from "../../components/edit-brand-detail/EditBrandDetail";
+import EditProductDetail from "../../components/edit-product-detail/EditProductDetail";
+import { Routes, Route } from "react-router-dom";
 
 export default function EditDeletePage() {
   let brands = useSelector((state) => state.brands.brands);
   let products = useSelector((state) => state.products.products);
 
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const [inputs, setInputs] = useState({
     brand: "",
@@ -56,6 +60,8 @@ export default function EditDeletePage() {
     });
   };
 
+  console.log(location);
+
   const handleEdit = (e) => {
     if (e.target.name === "brand") {
       navigate(`EditBrand/${inputs.brand}`);
@@ -71,9 +77,10 @@ export default function EditDeletePage() {
   }, [dispatch]);
 
   return (
+    <>
     <Box
       sx={{
-        display: "flex",
+        display: location.pathname !== "/admin/EditOrDelete" ? "none" : "flex",
         flexDirection: "column",
         gap: "4rem",
       }}
@@ -191,6 +198,13 @@ export default function EditDeletePage() {
           Delete
         </Button>
       </Box>
+
+     
     </Box>
+     <Routes>
+     <Route path="EditBrand/:id" element={<EditBrandDetail />} />
+     <Route path="EditProduct/:id" element={<EditProductDetail />} />
+   </Routes>
+   </>
   );
 }
