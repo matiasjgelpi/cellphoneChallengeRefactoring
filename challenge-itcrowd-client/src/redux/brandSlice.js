@@ -2,6 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Swal from "sweetalert2";
 import axios from "axios";
 
+axios.defaults.headers.common['Authorization'] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibWF0aWFzamdlbHBpQGdtYWlsLmNvbSIsImVtYWlsIjoibWF0aWFzamdlbHBpQGdtYWlsLmNvbSIsImlzQWRtaW5pc3RyYXRvciI6dHJ1ZSwiaWF0IjoxNjYyMzQ3ODU4LCJleHAiOjE2NjIzNzY2NTh9.QJ0PrC3LS9Ya3yHG1JxTsklWbz4VN2mozMt3nFEaC1A`
+
 export const getAllBrands = createAsyncThunk(
   "brands/getAllbrands",
   async () => {
@@ -63,11 +65,12 @@ export const addNewBrand = createAsyncThunk(
 export const editBrand = createAsyncThunk(
   "brand/editBrand",
   async (editedBrand) => {
+    console.log(editedBrand)
+
     try {
       const response = await axios.put(
-        `http://localhost:4000/brand/${editedBrand.id}?`,
-        editedBrand
-      );
+        `http://localhost:4000/brand/${editedBrand.id}?`,editedBrand     
+        );
       Swal.fire({
         title: "Success",
         text: response.data.msg,

@@ -10,12 +10,12 @@ export const login = createAsyncThunk(
         const loggedUser = {
             name : user.name,
             email: user.email,
-            isAdministrator: true
+            isAdministrator: false
         }
-        console.log(loggedUser)
+        
         const response = await axios.post("http://localhost:4000/user", loggedUser);
 
-        
+        console.log(response.data)
         return response.data;
       } catch (error) {
         Swal.fire({
@@ -38,7 +38,10 @@ const userSlice = createSlice({
         state.userloginStatus = "loading";
       },
       [login.fulfilled]: (state, action) => {
-        state.user = action.payload;
+        const {name, isAdministrator} = action.payload.user
+        const {token} = action.payload
+        
+        state.user = {name, isAdministrator, token};
         state.userloginStatus = "success";
       },
       [login.rejected]: (state, action) => {
