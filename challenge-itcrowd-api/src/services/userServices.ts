@@ -22,8 +22,8 @@ const postUser = (req: any, res: any): any => {
 
       const token = jwt.sign(
         { name: user.name, email: user.email, isAdministrator: user.isAdministrator },
-        'secret',
-        { expiresIn: '2h' }
+        'secret3',
+        { expiresIn: '8h' }
 
       )
 
