@@ -65,7 +65,6 @@ export const addNewBrand = createAsyncThunk(
 export const editBrand = createAsyncThunk(
   "brand/editBrand",
   async (editedBrand) => {
-    console.log(editedBrand)
 
     try {
       const response = await axios.put(

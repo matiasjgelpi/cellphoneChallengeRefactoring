@@ -14,8 +14,6 @@ export const login = createAsyncThunk(
         }
         
         const response = await axios.post("http://localhost:4000/user", loggedUser);
-
-        console.log(response.data)
         return response.data;
       } catch (error) {
         Swal.fire({

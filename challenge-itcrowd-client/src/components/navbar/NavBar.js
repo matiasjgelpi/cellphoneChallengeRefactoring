@@ -9,7 +9,6 @@ export default function NavBar() {
   const { user, isAuthenticated } = useAuth0();
   const isAdministrator = useSelector(state => state.user.user.isAdministrator)
 
-  console.log(isAuthenticated)
   return (
     <AppBar
       sx={{
