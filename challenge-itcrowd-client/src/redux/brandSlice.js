@@ -1,8 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Swal from "sweetalert2";
 import axios from "axios";
-
-axios.defaults.headers.common['Authorization'] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibWF0aWFzamdlbHBpQGdtYWlsLmNvbSIsImVtYWlsIjoibWF0aWFzamdlbHBpQGdtYWlsLmNvbSIsImlzQWRtaW5pc3RyYXRvciI6dHJ1ZSwiaWF0IjoxNjYyMzQ3ODU4LCJleHAiOjE2NjIzNzY2NTh9.QJ0PrC3LS9Ya3yHG1JxTsklWbz4VN2mozMt3nFEaC1A`
+axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`
 
 export const getAllBrands = createAsyncThunk(
   "brands/getAllbrands",
