@@ -60,7 +60,6 @@ export default function EditDeletePage() {
     });
   };
 
-  console.log(location);
 
   const handleEdit = (e) => {
     if (e.target.name === "brand") {

@@ -10,6 +10,8 @@ export default function EditBrandDetail() {
   const dispatch = useDispatch();
   const brand = useSelector((state) => state.brands.brandDetail);
 
+ 
+
   useEffect(() => {
     dispatch(getBrandDetail(id));
   },[dispatch, id]);

@@ -17,6 +17,7 @@ export default function BrandForm({ edit, id }) {
 
   const location = useLocation();
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const action = e.target.name === 'edit' ? 'edit' : "create"
