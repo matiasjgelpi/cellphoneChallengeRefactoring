@@ -10,9 +10,13 @@ import { getAllProducts } from "../../redux/productSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 
+import style from "./style.module.css";
+
 export default function MainPage() {
   let products = useSelector((state) => state.products.products);
   const dispatch = useDispatch();
+
+
 
   const [page, setPage] = useState(1);
   const [productsPerPage] = useState(3);
@@ -26,37 +30,11 @@ export default function MainPage() {
   }, [dispatch]);
 
   return (
-    <Paper
-      elevation={3}
-      sx={{
-        minHeight: "85vh",
-        backgroundColor: "lightblue",
-        tranparent: true,
-        margin: "1rem",
-        padding: "0 10% 0 10%",
-        display: "flex",
-        flexWrap: "wrap",
-        flexDirection: "row",
-        justifyContent: "center",
-        alignContent: "center",
-      }}
-    >
-      <Typography
-        variant="h4"
-        textAlign="start"
-        width="90vw"
-        margin="1rem 0 2rem 0"
-      >
-        Products:
+    <Paper className={style.main_page_container} elevation={3}>
+      <Typography variant="h4" className={style.main_page_title}>
+        PRODUCTS:
       </Typography>
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "1rem",
-          justifyContent: "space-evenly",
-        }}
-      >
+      <Box className={style.products_container}>
         {products.length > 0 ? (
           products
             ?.slice(indexOfFirstProduct, indexOfLastProduct)
@@ -68,14 +46,7 @@ export default function MainPage() {
         )}
       </Box>
 
-      <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          marginTop: "3rem",
-        }}
-      >
+      <Box className={style.pagination_container}>
         <Pagination count={pagesTotal} onChange={(e, page) => setPage(page)} />
       </Box>
     </Paper>
