@@ -4,15 +4,20 @@ import { connectDb } from './database/dbConnection'
 import ProductRoutes from './routes/product.routes'
 import BrandRoutes from './routes/brand.routes'
 import UserRoutes from './routes/user.routes'
+// import { verifyToken } from './utils/verifyToken'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const cors = require('cors')
+
+const corsOptions = {
+  origin: ['https://www.thunderclient.io', 'http://localhost:3000']
+}
 
 connectDb()
 
 const app = express()
 app.use(express.json())
-app.use(cors())
+app.use(cors(corsOptions))
 
 app.use('/', ProductRoutes)
 app.use('/', BrandRoutes)

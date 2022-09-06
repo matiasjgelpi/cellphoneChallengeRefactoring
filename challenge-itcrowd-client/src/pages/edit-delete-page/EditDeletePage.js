@@ -8,17 +8,21 @@ import {
   MenuItem,
 } from "@mui/material";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import { getAllBrands, deleteBrand } from "../../redux/brandSlice";
 import { getAllProducts, deleteProduct } from "../../redux/productSlice";
+import EditBrandDetail from "../../components/edit-brand-detail/EditBrandDetail";
+import EditProductDetail from "../../components/edit-product-detail/EditProductDetail";
+import { Routes, Route } from "react-router-dom";
 
 export default function EditDeletePage() {
   let brands = useSelector((state) => state.brands.brands);
   let products = useSelector((state) => state.products.products);
 
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const [inputs, setInputs] = useState({
     brand: "",
@@ -56,6 +60,7 @@ export default function EditDeletePage() {
     });
   };
 
+
   const handleEdit = (e) => {
     if (e.target.name === "brand") {
       navigate(`EditBrand/${inputs.brand}`);
@@ -71,126 +76,133 @@ export default function EditDeletePage() {
   }, [dispatch]);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "4rem",
-      }}
-    >
+    <>
       <Box
         sx={{
-          display: "flex",
-          gap: "1rem",
+          display:
+            location.pathname !== "/admin/EditOrDelete" ? "none" : "flex",
+          flexDirection: "column",
+          gap: "4rem",
         }}
       >
-        <FormControl fullWidth>
-          <InputLabel variant="outlined" htmlFor="description">
-            Brands
-          </InputLabel>
-          <Select
-            label="Brands"
+        <Box
+          sx={{
+            display: "flex",
+            gap: "1rem",
+          }}
+        >
+          <FormControl fullWidth>
+            <InputLabel variant="outlined" htmlFor="description">
+              Brands
+            </InputLabel>
+            <Select
+              label="Brands"
+              name="brand"
+              value={inputs.brand}
+              error={inputs.brand === ""}
+              onChange={handleChange}
+            >
+              {brands?.map((brand) => {
+                return (
+                  <MenuItem key={brand.id} value={brand.id}>
+                    {brand.name}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+            <FormHelperText variant="outlined">
+              {inputs.brand === "" && "Select a product to edit or delete"}
+            </FormHelperText>
+          </FormControl>
+          <Button
+            variant="contained"
+            size="small"
+            sx={{
+              width: "12%",
+              maxHeight: "3rem",
+            }}
             name="brand"
-            value={inputs.brand}
-            error={inputs.brand === ""}
-            onChange={handleChange}
+            onClick={handleEdit}
+            disabled={inputs.brand === ""}
           >
-            {brands?.map((brand) => {
-              return (
-                <MenuItem key={brand.id} value={brand.id}>
-                  {brand.name}
-                </MenuItem>
-              );
-            })}
-          </Select>
-          <FormHelperText variant="outlined">
-            {inputs.brand === "" && "Select a product to edit or delete"}
-          </FormHelperText>
-        </FormControl>
-        <Button
-          variant="contained"
-          size="small"
-          sx={{
-            width: "12%",
-            maxHeight: "3rem",
-          }}
-          name="brand"
-          onClick={handleEdit}
-          disabled={inputs.brand === ""}
-        >
-          Edit
-        </Button>
-        <Button
-          variant="contained"
-          size="small"
-          sx={{
-            width: "12%",
-            maxHeight: "3rem",
-          }}
-          name="brand"
-          onClick={(e) => handleDelete(e)}
-          disabled={inputs.brand === ""}
-        >
-          Delete
-        </Button>
-      </Box>
+            Edit
+          </Button>
+          <Button
+            variant="contained"
+            size="small"
+            sx={{
+              width: "12%",
+              maxHeight: "3rem",
+            }}
+            name="brand"
+            onClick={(e) => handleDelete(e)}
+            disabled={inputs.brand === ""}
+          >
+            Delete
+          </Button>
+        </Box>
 
-      <Box
-        sx={{
-          display: "flex",
-          gap: "1rem",
-        }}
-      >
-        <FormControl fullWidth>
-          <InputLabel variant="outlined" htmlFor="description">
-            Products
-          </InputLabel>
-          <Select
-            label="Products"
+        <Box
+          sx={{
+            display: "flex",
+            gap: "1rem",
+          }}
+        >
+          <FormControl fullWidth>
+            <InputLabel variant="outlined" htmlFor="description">
+              Products
+            </InputLabel>
+            <Select
+              label="Products"
+              name="product"
+              value={inputs.product}
+              error={inputs.product === ""}
+              onChange={handleChange}
+            >
+              {products?.map((product) => {
+                return (
+                  <MenuItem key={product.id} value={product.id}>
+                    {product.name}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+            <FormHelperText variant="outlined">
+              {inputs.product === "" && "Select a product to edit or delete"}
+            </FormHelperText>
+          </FormControl>
+          <Button
+            variant="contained"
+            size="small"
+            sx={{
+              width: "12%",
+              maxHeight: "3rem",
+            }}
             name="product"
-            value={inputs.product}
-            error={inputs.product === ""}
-            onChange={handleChange}
+            onClick={handleEdit}
+            disabled={inputs.product === ""}
           >
-            {products?.map((product) => {
-              return (
-                <MenuItem key={product.id} value={product.id}>
-                  {product.name}
-                </MenuItem>
-              );
-            })}
-          </Select>
-          <FormHelperText variant="outlined">
-            {inputs.product === "" && "Select a product to edit or delete"}
-          </FormHelperText>
-        </FormControl>
-        <Button
-          variant="contained"
-          size="small"
-          sx={{
-            width: "12%",
-            maxHeight: "3rem",
-          }}
-          name="product"
-          onClick={handleEdit}
-          disabled={inputs.product === ""}
-        >
-          Edit
-        </Button>
-        <Button
-          variant="contained"
-          size="small"
-          sx={{
-            width: "12%",
-            maxHeight: "3rem",
-          }}
-          name="product"
-          onClick={handleDelete}
-          disabled={inputs.product === ""}
-        >
-          Delete
-        </Button>
+            Edit
+          </Button>
+          <Button
+            variant="contained"
+            size="small"
+            sx={{
+              width: "12%",
+              maxHeight: "3rem",
+            }}
+            name="product"
+            onClick={handleDelete}
+            disabled={inputs.product === ""}
+          >
+            Delete
+          </Button>
+        </Box>
       </Box>
-    </Box>
+      <Routes>
+        <Route path="EditBrand/:id" element={<EditBrandDetail />} />
+        <Route path="EditProduct/:id" element={<EditProductDetail />} />
+      </Routes>
+    </>
   );
 }

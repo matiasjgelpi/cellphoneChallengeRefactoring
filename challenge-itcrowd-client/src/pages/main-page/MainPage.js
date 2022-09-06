@@ -9,13 +9,14 @@ import ProductCard from "../../components/product-card/ProductCard";
 import { getAllProducts } from "../../redux/productSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
+
 import style from "./style.module.css";
 
 export default function MainPage() {
   let products = useSelector((state) => state.products.products);
   const dispatch = useDispatch();
 
-  console.log(process.env.REACT_APP_GIL);
+
 
   const [page, setPage] = useState(1);
   const [productsPerPage] = useState(3);

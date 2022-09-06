@@ -30,5 +30,5 @@ export interface BrandUpdate {
 export interface User {
   name: string
   email: string
-  passwordHash: string
+  isAdministrator: boolean
 }

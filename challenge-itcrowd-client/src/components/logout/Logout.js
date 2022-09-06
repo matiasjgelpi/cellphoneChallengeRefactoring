@@ -1,8 +1,19 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/userSlice";
+import { useEffect } from "react";
 
 export default function LogoutButton() {
-  const { logout } = useAuth0();
+  const { logout, isAuthenticated, user} = useAuth0();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if(isAuthenticated) {
+      dispatch(login(user))
+    }
+  },[isAuthenticated, user, dispatch])
+  
 
   return (
     <Button onClick={() => logout({ returnTo: window.location.origin })}>
