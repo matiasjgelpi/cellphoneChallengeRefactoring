@@ -36,6 +36,23 @@ export const getProductDetail = createAsyncThunk(
   }
 );
 
+export const getProductsByBrand = createAsyncThunk(
+  "products/getProductsByBrand",
+  async (brandId) => {
+    try {
+      const response = await axios(`http://localhost:4000/products/${brandId}`);
+
+      return response.data;
+    } catch (error) {
+      Swal.fire({
+        title: "Error",
+        text: error.response.data.msg,
+        icon: "error",
+      });
+    }
+  }
+);
+
 export const addNewProduct = createAsyncThunk(
   "products/addNewProduct",
   async (newProduct) => {
@@ -181,6 +198,18 @@ const productsSlice = createSlice({
       state.productDetailStatus = "failed";
     },
 
+    [getProductsByBrand.pending]: (state) => {
+      state.productsByBrandStatus = "loading";
+    },
+    [getProductsByBrand.fulfilled]: (state, action) => {
+      state.allproducts = [...action.payload];
+      state.products = state.allproducts
+      state.productsByBrandStatus = "success";
+    },
+    [getProductsByBrand.rejected]: (state) => {
+      state.productsByBrandStatus = "failed";
+    },
+
     [addNewProduct.pending]: (state) => {
       state.productAddStatus = "loading";
     },
@@ -190,6 +219,7 @@ const productsSlice = createSlice({
     [addNewProduct.rejected]: (state) => {
       state.productAddStatus = "failed";
     },
+
     [editProduct.pending]: (state) => {
       state.editProductStatus = "loading";
     },
