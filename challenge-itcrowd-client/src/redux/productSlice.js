@@ -116,6 +116,7 @@ export const deleteProduct = createAsyncThunk(
 const productsSlice = createSlice({
   name: "products",
   initialState: {
+    allProducts: [],
     products: [],
     productDetail: {},
     productsStatus: "null",
@@ -127,6 +128,32 @@ const productsSlice = createSlice({
   reducers: {
     cleanProductDetail: (state) => {
       state.productDetail = {};
+    },
+
+    orderProductsByPrice: (state, action) => {
+      state.products = state.products.sort((p1, p2) => {
+        console.log(action.payload)
+        if(p1.price > p2.price) {
+          return  action.payload === "DSC" ? 1 : -1;
+        }
+        if(p1.price < p2.price) {
+          return  action.payload === "DSC" ? -1 : 1;
+        }
+        return 0
+      })
+    },
+
+    orderProductsByAlphabet: (state, action) => {
+      state.products = state.products.sort((p1, p2) => {
+        console.log(action.payload)
+        if(p1.name > p2.name) {
+          return  action.payload === "DSC" ? 1 : -1;
+        }
+        if(p1.name < p2.name) {
+          return  action.payload === "DSC" ? -1 : 1;
+        }
+        return 0
+      })
     }
   },
 
@@ -135,7 +162,8 @@ const productsSlice = createSlice({
       state.productsStatus = "loading";
     },
     [getAllProducts.fulfilled]: (state, action) => {
-      state.products = [...action.payload];
+      state.allproducts = [...action.payload];
+      state.products = state.allproducts
       state.productsStatus = "success";
     },
     [getAllProducts.rejected]: (state, action) => {
@@ -184,5 +212,5 @@ const productsSlice = createSlice({
   },
 });
 
-export const {cleanProductDetail} = productsSlice.actions;
+export const {cleanProductDetail, orderProductsByPrice, orderProductsByAlphabet} = productsSlice.actions;
 export default productsSlice.reducer;

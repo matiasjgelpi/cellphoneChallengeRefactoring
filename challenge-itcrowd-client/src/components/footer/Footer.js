@@ -20,7 +20,7 @@ export default function NavBar() {
         }}
         to="/"
       >
-        <h1>Itcrowd cellphones</h1>
+        <h1>Cellphone shop</h1>
       </Link>
     </Box>
   );
