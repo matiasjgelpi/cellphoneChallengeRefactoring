@@ -66,7 +66,7 @@ export default function BrandForm({ edit, id }) {
       logo_url:brand.logo_url??'' })
     }
     
-  },[brand, inputs, edit])
+  },[brand,  edit])
 
   useEffect(() => {
     setErrors(validateBrand(inputs, edit));

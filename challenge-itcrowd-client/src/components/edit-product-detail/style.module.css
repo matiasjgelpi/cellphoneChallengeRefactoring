@@ -1,0 +1,35 @@
+.container {
+  max-width: 80vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: center;
+}
+
+.title {
+  width: 100%;
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+.logo_preview_container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo_preview_title {
+text-align: center;
+}
+
+.logo {
+  object-fit: contain;
+  max-height: 500px;
+}
+
+.form {
+  width: 50%;
+  padding-bottom: 5px;
+}

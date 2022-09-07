@@ -19,6 +19,8 @@ import Swal from "sweetalert2";
 
 export default function ProductForm({ edit, id }) {
   let brands = useSelector((state) => state.brands.brands);
+  const product = useSelector((state) => state.products.productDetail);
+  const currentProductBrand = brands?.find(brand => brand?.name === product.brand?.name)?.id
   const dispatch = useDispatch();
 
   const location = useLocation();
@@ -85,6 +87,17 @@ export default function ProductForm({ edit, id }) {
   useEffect(() => {
     dispatch(getAllBrands());
   }, [dispatch]);
+
+  useEffect(() => {
+    if(edit !== undefined) {
+      setInputs({ name: product.name??'' ,
+      image_url:product.image_url??'',
+      price: product.price??'',
+      brand: currentProductBrand??'',
+      description: product.description??'', })
+    }
+    
+  },[product,currentProductBrand, edit])
 
   return (
     <Box
