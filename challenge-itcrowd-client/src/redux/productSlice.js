@@ -1,7 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Swal from "sweetalert2";
 import axios from "axios";
-axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`
+axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem(
+  "token"
+)}`;
 
 export const getAllProducts = createAsyncThunk(
   "products/getAllProducts",
@@ -149,29 +151,27 @@ const productsSlice = createSlice({
 
     orderProductsByPrice: (state, action) => {
       state.products = state.products.sort((p1, p2) => {
-        console.log(action.payload)
-        if(p1.price > p2.price) {
-          return  action.payload === "DSC" ? 1 : -1;
+        if (p1.price > p2.price) {
+          return action.payload === "ASC" ? 1 : -1;
         }
-        if(p1.price < p2.price) {
-          return  action.payload === "DSC" ? -1 : 1;
+        if (p1.price < p2.price) {
+          return action.payload === "ASC" ? -1 : 1;
         }
-        return 0
-      })
+        return 0;
+      });
     },
 
     orderProductsByAlphabet: (state, action) => {
       state.products = state.products.sort((p1, p2) => {
-        console.log(action.payload)
-        if(p1.name > p2.name) {
-          return  action.payload === "DSC" ? 1 : -1;
+        if (p1.name > p2.name) {
+          return action.payload === "ASC" ? 1 : -1;
         }
-        if(p1.name < p2.name) {
-          return  action.payload === "DSC" ? -1 : 1;
+        if (p1.name < p2.name) {
+          return action.payload === "ASC" ? -1 : 1;
         }
-        return 0
-      })
-    }
+        return 0;
+      });
+    },
   },
 
   extraReducers: {
@@ -180,7 +180,7 @@ const productsSlice = createSlice({
     },
     [getAllProducts.fulfilled]: (state, action) => {
       state.allproducts = [...action.payload];
-      state.products = state.allproducts
+      state.products = state.allproducts;
       state.productsStatus = "success";
     },
     [getAllProducts.rejected]: (state, action) => {
@@ -203,7 +203,7 @@ const productsSlice = createSlice({
     },
     [getProductsByBrand.fulfilled]: (state, action) => {
       state.allproducts = [...action.payload];
-      state.products = state.allproducts
+      state.products = state.allproducts;
       state.productsByBrandStatus = "success";
     },
     [getProductsByBrand.rejected]: (state) => {
@@ -242,5 +242,9 @@ const productsSlice = createSlice({
   },
 });
 
-export const {cleanProductDetail, orderProductsByPrice, orderProductsByAlphabet} = productsSlice.actions;
+export const {
+  cleanProductDetail,
+  orderProductsByPrice,
+  orderProductsByAlphabet,
+} = productsSlice.actions;
 export default productsSlice.reducer;

@@ -16,9 +16,7 @@ import {
   orderProductsByPrice,
   orderProductsByAlphabet,
 } from "../../redux/productSlice";
-import {
-  getAllBrands
-} from '../../redux/brandSlice'
+import { getAllBrands } from "../../redux/brandSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 
@@ -27,11 +25,10 @@ import style from "./style.module.css";
 export default function MainPage() {
   const products = useSelector((state) => state.products.products);
   const brands = useSelector((state) => state.brands.brands);
-  console.log(products);
   const dispatch = useDispatch();
 
-  const [orderDirection, setOrderDirection] = useState("");
-  const [brandFilter, setbrandFilter] = useState("");
+  const [priceOrderDirection, setPriceOrderDirection] = useState("");
+  const [alphabetDirection, setAlphabetDirection] = useState("");
 
   const [page, setPage] = useState(1);
   const [productsPerPage] = useState(4);
@@ -42,30 +39,34 @@ export default function MainPage() {
 
   useEffect(() => {
     dispatch(getAllProducts());
-    dispatch(getAllBrands())
-  }, [dispatch, brandFilter])
+    dispatch(getAllBrands());
+  }, [dispatch]);
 
   const handlePriceOrderInput = (e) => {
-    setOrderDirection(e.target.value);
-    dispatch(orderProductsByPrice(orderDirection));
-  };
-
-  const handleAlphabetOrderInput = (e) => {
-    setOrderDirection(e.target.value);
-    dispatch(orderProductsByAlphabet(orderDirection));
-  };
-
-  const handleFilterByBrands = (e) => {
-    console.log(e.target.value)
-    if(e.target.value !== "todas"){
-    // setbrandFilter(e.target.value)
-    dispatch(getProductsByBrand(e.target.value))
+    if (e.target.value !== "n") {
+      setPriceOrderDirection(e.target.value);
+      dispatch(orderProductsByPrice(e.target.value));
     } else {
       dispatch(getAllProducts());
     }
-  }
+  };
 
+  const handleAlphabetOrderInput = (e) => {
+    if (e.target.value !== "n") {
+      setAlphabetDirection(e.target.value);
+      dispatch(orderProductsByAlphabet(e.target.value));
+    } else {
+      dispatch(getAllProducts());
+    }
+  };
 
+  const handleFilterByBrands = (e) => {
+    if (e.target.value !== "todas") {
+      dispatch(getProductsByBrand(e.target.value));
+    } else {
+      dispatch(getAllProducts());
+    }
+  };
 
   return (
     <Paper className={style.main_page_container} elevation={3}>
@@ -75,8 +76,8 @@ export default function MainPage() {
       <Box
         sx={{
           width: "70vw",
-          display:"flex",
-          justifyContent:"center"
+          display: "flex",
+          justifyContent: "center",
         }}
       >
         <FormControl className={style.select}>
@@ -84,14 +85,18 @@ export default function MainPage() {
           <Select
             label="Orden alfabético"
             name="alphabeticOrder"
-            value={orderDirection}
+            defaultValue="N"
+            value={alphabetDirection}
             onChange={handleAlphabetOrderInput}
           >
+            <MenuItem className={style.select_item} value="N">
+              Ninguno
+            </MenuItem>
             <MenuItem className={style.select_item} value="ASC">
-            Ascendente
+              Ascendente
             </MenuItem>
             <MenuItem className={style.select_item} value="DSC">
-            Descendente
+              Descendente
             </MenuItem>
           </Select>
         </FormControl>
@@ -101,9 +106,13 @@ export default function MainPage() {
           <Select
             label="Orden por precio"
             name="priceOrder"
-            value={orderDirection}
+            defaultValue="N"
+            value={priceOrderDirection}
             onChange={handlePriceOrderInput}
           >
+            <MenuItem className={style.select_item} value="N">
+              Ninguno
+            </MenuItem>
             <MenuItem className={style.select_item} value="ASC">
               Ascendente
             </MenuItem>
@@ -118,17 +127,17 @@ export default function MainPage() {
           <Select
             label="Orden por marcas"
             name="brandFilter"
-            value={brandFilter}
+            defaultValue="todas"
             onChange={handleFilterByBrands}
           >
             <MenuItem value="todas">Todas</MenuItem>
             {brands?.map((brand) => {
-                return (
-                  <MenuItem key={brand.id} value={brand.id}>
-                    {brand.name}
-                  </MenuItem>
-                );
-              })}
+              return (
+                <MenuItem key={brand.id} value={brand.id}>
+                  {brand.name}
+                </MenuItem>
+              );
+            })}
           </Select>
         </FormControl>
       </Box>
