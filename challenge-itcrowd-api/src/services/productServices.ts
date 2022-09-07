@@ -55,7 +55,6 @@ const getProductsByBrand = (req: any, res: any): any => {
 const postProduct = (req: any, res: any): any => {
   void (async () => {
     try {
-      // console.log(req)
       const validatedRequestBody = validateNewProduct(req.body)
       const product = await ProductModel.create(validatedRequestBody)
       return res.send(product)

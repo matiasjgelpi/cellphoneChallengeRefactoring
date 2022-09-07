@@ -3,6 +3,7 @@ import { Button } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/userSlice";
 import { useEffect } from "react";
+import Logout from "@mui/icons-material/Logout"
 
 export default function LogoutButton() {
   const { logout, isAuthenticated, user} = useAuth0();
@@ -17,7 +18,7 @@ export default function LogoutButton() {
 
   return (
     <Button onClick={() => logout({ returnTo: window.location.origin })}>
-      Logout
+      <Logout/> Logout
     </Button>
   );
 }

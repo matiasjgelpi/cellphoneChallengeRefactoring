@@ -31,3 +31,11 @@
     justify-content: center;
     margin-top: 3rem;
 }
+
+.select {
+  width: 175px;
+}
+
+.select_item {
+  width: fit-content;
+}

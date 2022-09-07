@@ -1,13 +1,11 @@
 import { AppBar, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 import LoginButton from "../login/Login";
-import LogoutButton from "../logout/Logout";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useSelector } from "react-redux";
+import ProfileMenu from "../profile-menu/ProfileMenu";
 
 export default function NavBar() {
-  const { user, isAuthenticated } = useAuth0();
-  const isAdministrator = useSelector(state => state.user.user.isAdministrator)
+  const { isAuthenticated } = useAuth0();
 
   return (
     <AppBar
@@ -27,7 +25,7 @@ export default function NavBar() {
         }}
         to="/"
       >
-        <h1>Itcrowd cellphones</h1>
+        <h1>Cellphone shop</h1>
       </Link>
 
       {!isAuthenticated ? (
@@ -40,22 +38,7 @@ export default function NavBar() {
             gap: "1rem",
           }}
         >
-          <LogoutButton></LogoutButton>
-
-         {isAdministrator && <Link
-            style={{
-              textDecoration: "none",
-              color: "white",
-            }}
-            to="admin"
-          >
-            <h3>Admin Page</h3>
-          </Link>}
-          <img
-            src={user.picture}
-            style={{ width: "35px", height: "35px", borderRadius: "50%" }}
-            alt="user avatar"
-          />
+          <ProfileMenu />
         </Box>
       )}
     </AppBar>

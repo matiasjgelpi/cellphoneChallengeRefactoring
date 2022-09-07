@@ -1,19 +1,23 @@
 import { useEffect, useState } from "react";
 import { Button, Box, TextField } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { validateBrand } from "../../utils/validators";
 import { useLocation } from "react-router-dom";
 import { addNewBrand, editBrand } from "../../redux/brandSlice";
 import Swal from "sweetalert2";
 
+
 export default function BrandForm({ edit, id }) {
   const dispatch = useDispatch();
+  const brand = useSelector((state) => state.brands.brandDetail);
 
   const [inputs, setInputs] = useState({
+   
     name: "",
     logo_url: "",
   });
   const [errors, setErrors] = useState({});
+
 
   const location = useLocation();
 
@@ -55,6 +59,14 @@ export default function BrandForm({ edit, id }) {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
     setErrors(validateBrand(inputs, edit));
   };
+
+  useEffect(() => {
+    if(edit !== undefined) {
+      setInputs({ name: brand.name??'' ,
+      logo_url:brand.logo_url??'' })
+    }
+    
+  },[brand,  edit])
 
   useEffect(() => {
     setErrors(validateBrand(inputs, edit));
