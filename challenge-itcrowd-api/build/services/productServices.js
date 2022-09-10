@@ -65,7 +65,6 @@ const getProductsByBrand = (req, res) => {
 const postProduct = (req, res) => {
     void (() => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            // console.log(req)
             const validatedRequestBody = (0, parsers_1.validateNewProduct)(req.body);
             const product = yield productModel_1.default.create(validatedRequestBody);
             return res.send(product);
