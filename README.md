@@ -1,5 +1,5 @@
 
-# **Challenge-IT-Crowd**
+# **CellPhone Shop Challenge**
 a fullstack web app for a job application
 
 ### Backend:
